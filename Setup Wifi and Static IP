@@ -1,0 +1,58 @@
+
+Wifi Setup:
+
+1. Terminal command: 
+
+sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+
+2. Paste code:
+
+network={
+        ssid="LH_Corporate_WLAN"
+        scan_ssid=1
+        key_mgmt=WPA-EAP
+        eap=PEAP
+        identity="U130788"
+        password="Lufthansa46"
+        phase1="peaplabel=0"
+        }
+
+Static IP setup:
+
+1. Terminal command and copy IP:
+
+ping raspberrypi.local
+
+2. Terminal command: 
+
+sudo nano /etc/dhcpcd.conf
+
+3. Paste code at end of file:
+
+interface wlan0
+
+static ip_address= (IP address)/25
+static routers=10.95.21.1
+static domain_name_servers=10.95.20.225
+
+
+interface wlan0
+
+static ip_address= 192.168.1.18/25
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1
+
+
+
+Auto Run:
+
+1. Terminal command:
+
+sudo nano /home/pi/.bashrc
+
+2. Paste at the end:
+
+sleep 5
+python3 /home/pi/Desktop/SendAlert.py
+
+
